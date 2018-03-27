@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class InMemoryNoteRepository {
 
+    protected static int lastId = 2;
     protected static Map<String, Note> notes = new HashMap<>();
 
     static {
@@ -30,7 +31,13 @@ public class InMemoryNoteRepository {
     }
 
     public void saveNote(Note note) {
-        //
+        if (note.getId() > 0) {
+            // edit
+        } else {
+            note.setId(++lastId);
+            note.setLastEdited( (int) (System.currentTimeMillis() / 1000L) );
+            notes.put(note.getId() + "", note);
+        }
     }
 
 }

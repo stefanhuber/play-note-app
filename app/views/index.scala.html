@@ -1,25 +1,25 @@
 @(notes: List[Note])
 
-@main("Welcome to Play") {
+    @main("Welcome to Play") {
 
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="/">Home</a>
-            </li>
-        </ol>
-    </nav>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/">Home</a>
+                </li>
+            </ol>
+        </nav>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Last Edited</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Last Edited</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
             @for(note <- notes) {
                 <tr>
                     <td>@note.getId()</td>
@@ -31,7 +31,7 @@
                     </td>
                 </tr>
             }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-}
+    }
