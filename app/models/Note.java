@@ -5,10 +5,10 @@ import java.util.Date;
 
 public class Note {
 
-    protected int id;
-    protected String title;
-    protected String description;
-    protected int lastEdited;
+    protected int id = 0;
+    protected String title = "";
+    protected String description = "";
+    protected int lastEdited = 0;
 
     public int getId() {
         return id;

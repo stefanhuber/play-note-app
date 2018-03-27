@@ -28,7 +28,13 @@ public class HomeController extends Controller {
     }
 
     public Result form(int id) {
-        return ok(views.html.form.render());
+        Note note = new Note();
+
+        if (id > 0) {
+            note = noteRepository.getNote(id);
+        }
+
+        return ok(views.html.form.render(note));
     }
 
     public Result save() {

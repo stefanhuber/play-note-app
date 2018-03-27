@@ -26,18 +26,21 @@ public class InMemoryNoteRepository {
         notes.put("2", note2);
     }
 
+    public Note getNote(int id) {
+        return notes.get(id + "");
+    }
+
     public List<Note> getNotes() {
         return new ArrayList<>(notes.values());
     }
 
     public void saveNote(Note note) {
-        if (note.getId() > 0) {
-            // edit
-        } else {
+        if (note.getId() <= 0) {
             note.setId(++lastId);
-            note.setLastEdited( (int) (System.currentTimeMillis() / 1000L) );
-            notes.put(note.getId() + "", note);
         }
+
+        note.setLastEdited( (int) (System.currentTimeMillis() / 1000L) );
+        notes.put(note.getId() + "", note);
     }
 
 }
