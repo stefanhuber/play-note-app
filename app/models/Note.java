@@ -1,5 +1,8 @@
 package models;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Note {
 
     protected int id;
@@ -38,4 +41,9 @@ public class Note {
     public void setLastEdited(int lastEdited) {
         this.lastEdited = lastEdited;
     }
+
+    public String getLastEditedFormatted() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date(this.lastEdited * 1000L));
+    }
+
 }
