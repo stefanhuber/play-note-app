@@ -1,13 +1,21 @@
 package models;
 
+import play.data.validation.Constraints;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Note {
 
-    protected int id;
-    protected String title;
-    protected String description;
+    protected int id = 0;
+
+    @Constraints.Required(message = "Please add a title")
+    @Constraints.MaxLength(value = 20, message ="Only 20 characters are allowed")
+    protected String title = "";
+
+    @Constraints.Required(message = "Please add a description")
+    @Constraints.MaxLength(value = 200, message ="Only 200 characters are allowed")
+    protected String description = "";
     protected int lastEdited;
 
     public int getId() {

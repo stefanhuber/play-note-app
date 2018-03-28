@@ -1,4 +1,4 @@
-@(note:Note)
+@(form:Form[Note])
 
 @main("Note form") {
 
@@ -13,16 +13,28 @@
 
     <form method="post" action="/notes">
 
-        <input type="hidden" name="id" value="@note.getId()">
+        <input type="hidden" name="id" value="@form("id").getValue().get()">
 
         <div class="form-group">
             <label for="form-title">Title</label>
-            <input name="title" value="@note.getTitle()" type="text" class="form-control" id="form-title">
+            <input name="title" value="@form("title").getValue().get()" type="text" class="form-control @if(form.getError("title").isPresent()){ is-invalid }" id="form-title">
+
+            @for(currentError <- form.errors("title")) {
+                <div class="invalid-feedback">
+                    @currentError.message()
+                </div>
+            }
         </div>
 
         <div class="form-group">
             <label for="form-note">Note</label>
-            <textarea name="description" id="form-note" class="form-control">@note.getDescription()</textarea>
+            <textarea name="description" id="form-note" class="form-control @if(form.getError("description").isPresent()){ is-invalid }">@form("description").getValue().get()</textarea>
+
+            @for(currentError <- form.errors("description")) {
+                <div class="invalid-feedback">
+                @currentError.message()
+                </div>
+            }
         </div>
 
         @helper.CSRF.formField

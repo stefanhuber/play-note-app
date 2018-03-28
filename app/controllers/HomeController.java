@@ -33,14 +33,20 @@ public class HomeController extends Controller {
             note = new Note();
         }
 
-        return ok(views.html.form.render(note));
+        return ok(views.html.form.render(noteForm.fill(note)));
     }
 
     public Result save() {
-        Note newNote = noteForm.bindFromRequest().get();
-        noteRepository.saveNote(newNote);
+        Form<Note> form = noteForm.bindFromRequest();
 
-        return redirect( "/");
+        if(form.hasErrors()){
+            return badRequest(views.html.form.render(form));
+        }else{
+            noteRepository.saveNote(form.get());
+
+            return redirect( "/");
+        }
+
     }
 
     public Result delete(int id) {
