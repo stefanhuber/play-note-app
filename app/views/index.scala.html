@@ -27,7 +27,7 @@
                     <td>@note.getLastEditedFormatted()</td>
                     <td>
                         <a class="btn btn-primary" href="/notes/@note.getId()">Edit</a>
-                        <button class="btn btn-danger">Delete</button>
+                        <button data-action="delete" data-id="@note.getId()" class="btn btn-danger">Delete</button>
                     </td>
                 </tr>
             }

@@ -43,4 +43,7 @@ public class InMemoryNoteRepository {
         notes.put(note.getId() + "", note);
     }
 
+    public void delete(int id) {
+        notes.remove(id + "");
+    }
 }
