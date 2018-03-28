@@ -15,8 +15,6 @@ public class HomeController extends Controller {
 
     protected Form<Note> noteForm;
 
-
-
     @Inject
     public HomeController(InMemoryNoteRepository noteRepository, FormFactory formFactory) {
         this.noteRepository = noteRepository;
