@@ -4,16 +4,15 @@ import models.Note;
 import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.*;
-import services.InMemoryNoteRepository;
+import services.EbeanNoteRepository;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeController extends Controller {
 
     @Inject
-    protected InMemoryNoteRepository noteRepository;
+    protected EbeanNoteRepository noteRepository;
 
     protected Form<Note> noteForm;
 

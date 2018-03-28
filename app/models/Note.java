@@ -4,11 +4,15 @@ package models;
 
 import play.data.validation.Constraints;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Entity
 public class Note {
 
+    @Id
     protected int id = 0;
 
     @Constraints.Required(message="Please add a title")
