@@ -29,7 +29,13 @@ public class HomeController extends Controller {
     }
 
     public Result form(int id) {
-        return ok(views.html.form.render());
+        Note note = noteRepository.getNote(id);
+
+        if (note == null) {
+            note = new Note();
+        }
+
+        return ok(views.html.form.render(note));
     }
 
     public Result save() {
@@ -37,6 +43,11 @@ public class HomeController extends Controller {
         noteRepository.saveNote(newNote);
 
         return redirect( "/");
+    }
+
+    public Result delete(int id) {
+        noteRepository.deleteNote(id);
+        return ok();
     }
 
 }

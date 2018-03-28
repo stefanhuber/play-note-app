@@ -30,6 +30,10 @@ public class InMemoryNoteRepository {
         return new ArrayList<>(notes.values());
     }
 
+    public Note getNote(int id) {
+        return notes.get(id + "");
+    }
+
     public void saveNote(Note note) {
         if (note.getId() <= 0){
             note.setId(++lastId);
@@ -38,6 +42,10 @@ public class InMemoryNoteRepository {
         note.setLastEdited( (int) (System.currentTimeMillis() / 1000L));
 
         notes.put(note.getId() + "", note);
+    }
+
+    public void deleteNote(int id) {
+        notes.remove(id + "");
     }
 
 }
