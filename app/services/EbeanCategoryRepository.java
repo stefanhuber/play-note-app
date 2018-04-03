@@ -31,4 +31,8 @@ public class EbeanCategoryRepository {
         return Ebean.find(Category.class, id);
     }
 
+    public void deleteCategory(int id) {
+        Ebean.delete(Category.class, id);
+    }
+
 }

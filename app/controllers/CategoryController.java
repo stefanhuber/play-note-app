@@ -23,4 +23,9 @@ public class CategoryController extends Controller {
         }
     }
 
+    public Result delete(int id) {
+        categoryRepository.deleteCategory(id);
+        return ok();
+    }
+
 }
