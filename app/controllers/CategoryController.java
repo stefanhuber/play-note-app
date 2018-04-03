@@ -18,10 +18,23 @@ public class CategoryController extends Controller {
 
         if(category == null) {
             return badRequest("Category not found.");
-        }else {
+        } else {
             return ok(Json.toJson(category));
         }
     }
+
+    public Result delete(int id){
+        try {
+            categoryRepository.delete(id);
+            return ok();
+
+        } catch (Exception ex) {
+
+            return badRequest("Cannot delete Category, because it is linked to a note!");
+        }
+
+    }
+
 
     public Result list() {
         return ok(Json.toJson(categoryRepository.getCategories()));
