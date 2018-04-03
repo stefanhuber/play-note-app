@@ -4,6 +4,7 @@ import play.data.validation.Constraints;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,6 +22,9 @@ public class Note {
     @Constraints.MaxLength(value = 200, message ="Only 200 characters are allowed")
     protected String description = "";
     protected int lastEdited;
+
+    @ManyToOne
+    protected Category category;
 
     public int getId() {
         return id;
@@ -58,4 +62,11 @@ public class Note {
         return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date(this.lastEdited * 1000L));
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }
