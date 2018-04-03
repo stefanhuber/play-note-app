@@ -13,6 +13,10 @@ public class CategoryController extends Controller {
     @Inject
     protected EbeanCategoryRepository categoryRepository;
 
+    public Result list() {
+        return ok(Json.toJson(categoryRepository.getCategories()));
+    }
+
     public Result get(int id) {
         Category category = categoryRepository.getCategory(id);
 
