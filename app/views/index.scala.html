@@ -2,6 +2,14 @@
 
 @main("Welcome to Play") {
 
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/">Home</a>
+            </li>
+        </ol>
+    </nav>
+
     <table class="table">
         <thead>
             <tr>
@@ -16,8 +24,11 @@
                 <tr>
                     <td>@note.getId()</td>
                     <td>@note.getTitle()</td>
-                    <td>@note.getLastEdited()</td>
-                    <td></td>
+                    <td>@note.getLastEditedFormatted()</td>
+                    <td>
+                        <a class="btn btn-primary" href="/notes/@note.getId()">Edit</a>
+                        <button data-action="delete" data-id="@note.getId()" class="btn btn-danger">Delete</button>
+                    </td>
                 </tr>
             }
         </tbody>
