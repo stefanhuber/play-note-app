@@ -27,4 +27,8 @@ public class EbeanCategoryRepository {
         return Ebean.find(Category.class).findList();
     }
 
+    public Category getCategory(int id) {
+        return Ebean.find(Category.class, id);
+    }
+
 }
