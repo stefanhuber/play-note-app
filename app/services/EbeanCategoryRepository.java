@@ -35,4 +35,12 @@ public class EbeanCategoryRepository {
         Ebean.delete(Category.class, id);
     }
 
+    public void saveCategory(Category category) {
+        if (category.getId() > 0) {
+            Ebean.update(category);
+        } else {
+            Ebean.save(category);
+        }
+    }
+
 }
