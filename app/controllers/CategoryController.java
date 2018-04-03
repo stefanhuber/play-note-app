@@ -16,7 +16,15 @@ public class CategoryController extends Controller {
     public Result get(int id) {
         Category category = categoryRepository.getCategory(id);
 
-        return ok(Json.toJson(category));
+        if(category == null) {
+            return badRequest("Category not found.");
+        }else {
+            return ok(Json.toJson(category));
+        }
+    }
+
+    public Result list() {
+        return ok(Json.toJson(categoryRepository.getCategories()));
     }
 
 

@@ -12,6 +12,8 @@ POST    /notes                      controllers.HomeController.save
 DELETE  /notes/:id                  controllers.HomeController.delete(id:Integer)
 
 #API
+GET      /api/v1/categories         controllers.CategoryController.list
+
 GET      /api/v1/categories/:id     controllers.CategoryController.get(id:Integer)
 
 # Map static resources from the /public folder to the /assets URL path
