@@ -4,7 +4,7 @@ import models.Note;
 import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.*;
-import services.EbeanNoteRepository;
+import services.InMemoryNoteRepository;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 public class HomeController extends Controller {
 
     @Inject
-    protected EbeanNoteRepository noteRepository;
+    protected InMemoryNoteRepository noteRepository;
 
     protected Form<Note> noteForm;
 
@@ -51,7 +51,7 @@ public class HomeController extends Controller {
     }
 
     public Result delete(int id) {
-        noteRepository.delete(id);
+        noteRepository.deleteNote(id);
         return ok();
     }
 
