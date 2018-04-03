@@ -27,6 +27,14 @@ public class EbeanCategoryRepository {
         return Ebean.find(Category.class).findList();
     }
 
+    public void saveCategory(Category category) {
+        if (category.getId() > 0){
+            Ebean.update(category);
+        } else {
+            Ebean.save(category);
+        }
+    }
+
     public void delete(int id) {
 
         Ebean.delete(Category.class, id);
