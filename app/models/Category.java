@@ -1,5 +1,7 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -13,6 +15,7 @@ public class Category {
     protected String title;
 
     @OneToMany
+    @JsonIgnore
     protected List<Note> notes;
 
     public int getId() {
