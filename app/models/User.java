@@ -3,7 +3,9 @@ package models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.security.MessageDigest;
+import java.util.List;
 
 @Entity
 public class User {
@@ -15,6 +17,11 @@ public class User {
     protected String username;
 
     protected String password;
+
+    protected String role = "user";
+
+    @OneToMany
+    protected List<Note> notes;
 
     public boolean comparePasswords(String password) {
         return getHash(password).equals(getPassword());
@@ -57,5 +64,17 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public boolean isAdmin() {
+        return getRole().equals("admin");
     }
 }

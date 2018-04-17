@@ -2,6 +2,7 @@ package services;
 
 import io.ebean.Ebean;
 import models.User;
+import play.mvc.Http;
 
 public class EbeanUserRepository {
 
@@ -15,8 +16,8 @@ public class EbeanUserRepository {
             User user2 = new User();
             user2.setUsername("hans");
             user2.setPasswordInCleartext("pwd2");
+            user2.setRole("admin");
             Ebean.save(user2);
-
         }
 
     }
@@ -26,5 +27,18 @@ public class EbeanUserRepository {
                 .where()
                 .eq("username", username)
                 .findOne();
+    }
+
+    public User getCurrentUser() {
+        String username = Http.Context.current().session().get("username");
+        return getUserByUsername(username);
+    }
+
+    public void saveUser(User user) {
+        if (user.getId() > 0) {
+            Ebean.update(user);
+        } else {
+            Ebean.save(user);
+        }
     }
 }

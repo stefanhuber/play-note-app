@@ -26,6 +26,9 @@ public class Note {
     @ManyToOne
     protected Category category;
 
+    @ManyToOne
+    protected User user;
+
     public int getId() {
         return id;
     }
@@ -68,5 +71,13 @@ public class Note {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

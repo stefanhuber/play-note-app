@@ -22,12 +22,9 @@ public class BasicAuthenticationMiddleware extends Action.Simple {
     public CompletionStage<Result> call(Http.Context ctx) {
         Optional<String> header = ctx.request().header("Authorization");
 
-        Logger.info("header: " + header);
         if(header.isPresent() && header.get().startsWith("Basic ")) {
             String auth = header.get().substring(6);
             auth = new String(Base64.getDecoder().decode(auth));
-
-            Logger.info("header decoded: " + auth);
 
             String [] credentials = auth.split(":");
             if(credentials.length == 2) {

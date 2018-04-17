@@ -1,4 +1,4 @@
-@(notes: List[Note])
+@(notes: List[Note], user: User)
 
 @main("Welcome to Play") {
 
@@ -36,7 +36,9 @@
                     <td>@note.getLastEditedFormatted()</td>
                     <td>
                         <a class="btn btn-primary" href="/notes/@note.getId()">Edit</a>
+                        @if(note.getUser().getId() == user.getId()) {
                         <button data-action="delete" data-id="@note.getId()" class="btn btn-danger">Delete</button>
+                        }
                     </td>
                 </tr>
             }

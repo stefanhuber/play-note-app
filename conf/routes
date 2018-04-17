@@ -2,6 +2,16 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+GET     /login                      controllers.LoginController.index
+
+POST    /login                      controllers.LoginController.login
+
+GET     /logout                     controllers.LoginController.logout
+
+GET     /password                   controllers.LoginController.passwordForm
+
+POST    /password                   controllers.LoginController.password
+
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
 

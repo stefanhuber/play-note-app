@@ -1,33 +1,36 @@
 package controllers;
 
-import middlewares.BasicAuthenticationMiddleware;
+import middlewares.SessionAuthenticationMiddleware;
 import models.Note;
 import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.*;
 import services.EbeanCategoryRepository;
 import services.EbeanNoteRepository;
+import services.EbeanUserRepository;
 
 import javax.inject.Inject;
 import java.util.List;
 
-@With(BasicAuthenticationMiddleware.class)
+@With(SessionAuthenticationMiddleware.class)
 public class HomeController extends Controller {
 
     protected EbeanNoteRepository noteRepository;
+    protected EbeanUserRepository userRepository;
     protected EbeanCategoryRepository categoryRepository;
     protected Form<Note> noteForm;
 
     @Inject
-    public HomeController(EbeanNoteRepository noteRepository, EbeanCategoryRepository categoryRepository, FormFactory formFactory) {
+    public HomeController(EbeanNoteRepository noteRepository, EbeanUserRepository userRepository, EbeanCategoryRepository categoryRepository, FormFactory formFactory) {
         this.noteRepository = noteRepository;
         this.categoryRepository = categoryRepository;
+        this.userRepository = userRepository;
         this.noteForm = formFactory.form(Note.class);
     }
 
     public Result index() {
-        List<Note> notes = noteRepository.getNotes();
-        return ok(views.html.index.render(notes));
+        List<Note> notes = noteRepository.getNotesByUser();
+        return ok(views.html.index.render(notes, userRepository.getCurrentUser()));
     }
 
     public Result form(int id) {
